@@ -1,0 +1,18 @@
+header{
+    background-color:aquamarine;
+    position:fixed;
+    padding:1in;
+    margin:.68in;
+}
+
+body{
+    width:100%;
+    background-image: url("papyrus.png");
+}
+
+.container{
+    margin: 1.68in 2.23in;
+    padding:1.68in 2.23in;
+    background-color: blue;
+    text-align:center;
+}
