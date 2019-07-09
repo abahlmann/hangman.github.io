@@ -37,13 +37,13 @@ var guess={
             this.lettersNeeded=this.currentWord.length;
         },//close newWord
 
-        checkGuess: function(){
+        checkGuess: function(input){
             //reset guess
             this.correctGuess=false;
 
                 //check each letter
                 for (var i=0;i<this.currentWord.length;i++){
-                    if (guess===this.currentWord.charAt(i)){
+                    if (input===this.currentWord.charAt(i)){
                         guessedWord[i]=this.currentWord.charAt(i);
                         this.correctGuess=true;
                         this.lettersNeeded=this.lettersNeeded-1;
@@ -60,22 +60,25 @@ var guess={
             if (this.lettersNeeded===0){
                 win=true;
             }//close if
+        },//close checkGuess()
 
-        }//close checkGuess()
+        start: function(){
+            that = this;
+            document.onkeyup=function(event){
+                that.newWord();
+                var guessBox = document.createElement("div");
+                for (var i=0;i<that.currentWord.length;i++){
+                guessBox.innerHTML+=guessedWord[i]+" ";
+                }
+                container.appendChild(guessBox);
+            }//close event
+        },//end start
+
+        game: function(){
+            document.onkeyup=function(letter){
+                guess=letter.key.toLowerCase;
+                guess.checkGuess(letter.key.toLowerCase);
+            }//end letter/guess
+        }//end game
+    
     }//close guess
-document.onkeyup=function(start){
-    guess.newWord();
-    var guessBox = document.createElement("div");
-    for (var i=0;i<guess.currentWord.length;i++){
-    guessBox.innerHTML+=guessedWord[i]+" ";
-    }
-    container.appendChild(guessBox);
-    do{
-
-    document.onkeyup=function(letter){
-        guess=letter;
-        guess.checkGuess();
-
-    }//end letter/guess
-    } while(guess.win||!guess.lose);//end do-while
-}//end start
