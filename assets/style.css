@@ -3,6 +3,7 @@ header{
     position:fixed;
     padding:1in;
     margin:.68in;
+    color:blue;
 }
 
 body{
@@ -13,6 +14,12 @@ body{
 .container{
     margin: 1.68in 2.23in;
     padding:1.68in 2.23in;
-    background-color: blue;
+    color: blue;
     text-align:center;
+    border: solid 2px aquamarine;
+    border-radius: 4px;
+}
+
+.entryScreen{
+
 }
