@@ -11,7 +11,7 @@ body{
     background-image: url("papyrus.png");
 }
 
-.container{
+#container, .container{
     margin: 1.68in 2.23in;
     padding:1.68in 2.23in;
     color: blue;
@@ -20,6 +20,13 @@ body{
     border-radius: 4px;
 }
 
-.entryScreen{
-
+.container{
+    background-color: aquamarine;
 }
+
+#wrongLetter, #letterBox{
+    display: inline-block;
+    max-width: 2.23in;
+    text-align: center;
+}
+

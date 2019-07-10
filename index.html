@@ -5,16 +5,26 @@
 
     <title>Hangman!</title>
 
-    <link rel="stylesheet" type="text/css" src="assets/reset.css">
+    <link rel="stylesheet" type="text/css" href="assets/reset.css">
     <link rel="stylesheet" type="text/css" href="assets/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 </head>
 
 <body>
     <header>
         <h1>Hangman</h1>
-    </header>
-    <div class="container">
-    <p class="entryScreen"><strong>PRESS ANY KEY TO CONTINUE..</strong></p>
+        <p id="entryScreen"></p>
+    </header>    
+
+    <div id="container">
+    <div class="container" id="letterBox">
+        <div id="letterBox">
+            <p>LETTERS GUESSED</p>
+            <p id="wrongLetter"></p>
+        </div>
+
+    </div>
     </div> <!--close main container-->
     
 

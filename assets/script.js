@@ -14,13 +14,19 @@ var wordlist=[
 
 var guessedWord=[];
 
+//html variables
+var entryScreen=document.getElementById("entryScreen");
+var container=document.getElementById("container");
+var letterBox=document.getElementById("letterBox");
+var wrongLetter=document.getElementById("wrongLetter");
+
 var guess={
         lose:false,
         win:false,
         correctGuess:false,
         currentWord:" ",
         guessedWord:" ",
-        lettersGuessed:0,
+        letterGuessed:"",
         lettersNeeded:0,
 
         newWord: function(){
@@ -37,13 +43,13 @@ var guess={
             this.lettersNeeded=this.currentWord.length;
         },//close newWord
 
-        checkGuess: function(input){
+        checkGuess: function(){
             //reset guess
             this.correctGuess=false;
 
                 //check each letter
                 for (var i=0;i<this.currentWord.length;i++){
-                    if (input===this.currentWord.charAt(i)){
+                    if (this.letterGuessed===this.currentWord.charAt(i)){
                         guessedWord[i]=this.currentWord.charAt(i);
                         this.correctGuess=true;
                         this.lettersNeeded=this.lettersNeeded-1;
@@ -61,24 +67,42 @@ var guess={
                 win=true;
             }//close if
         },//close checkGuess()
+        load:function(){
+            entryScreen.innerHTML="PRESS ANY KEY TO CONTINUE..";
+            container.appendChild(entryScreen);
+        },
+        game: function(){
+            var that=this;
+            document.onkeyup=function(letter){
+                letterGuessed=letter.key.toLowerCase;
+                guess.checkGuess();
+                if (!that.correctGuess){
+                    //wrongLetter.innerHTML=;
+                    letterBox.append(letter.key);
+                }
+            }//end letter/guess
+        },//end game
 
         start: function(){
-            that = this;
+            var that = this;
+            //react to press any key to continue
             document.onkeyup=function(event){
+                entryScreen.innerHTML="";
+                console.log(event.key);
                 that.newWord();
+                console.log(that.currentWord);
                 var guessBox = document.createElement("div");
                 for (var i=0;i<that.currentWord.length;i++){
                 guessBox.innerHTML+=guessedWord[i]+" ";
                 }
                 container.appendChild(guessBox);
-            }//close event
-        },//end start
+                // while(!that.win||!that.lose){
+                    that.game();
+                // }
+            }
+        }//end start
 
-        game: function(){
-            document.onkeyup=function(letter){
-                guess=letter.key.toLowerCase;
-                guess.checkGuess(letter.key.toLowerCase);
-            }//end letter/guess
-        }//end game
-    
     }//close guess
+    guess.load();
+    guess.start();
+    guess.load();
